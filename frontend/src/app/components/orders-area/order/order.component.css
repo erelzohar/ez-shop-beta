@@ -1,0 +1,64 @@
+.container{
+    height: 100%;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 0;
+    padding: 0;
+}
+
+.cart{
+    background-color: rgba(255, 255, 255, 0.52);
+    grid-column: span 1;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+}
+
+td , table{
+    border: 0.5px solid rgba(128, 128, 128, 0.52);
+    padding: 5px;
+}
+thead{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 700;
+}
+table{
+    height: 100%;
+    overflow: auto;
+}
+img{
+    width: 40px;
+}
+a{
+    margin: 20px;
+    font-size: larger;
+    display: flex;
+}
+
+.orderForm{
+    grid-column: span 1;
+    display: flex;
+}
+
+
+form {
+    width: 200px;
+    margin: auto;
+    text-align: left;
+}
+
+input, button, mat-label {
+	width: 100%;
+    box-sizing: border-box;
+    font-size: larger;
+}
+
+mat-error {
+    font-size:medium;
+}
+ button{
+    background-color: rgba(44, 43, 43, 0.192);
+}
+
+

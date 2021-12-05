@@ -1,0 +1,37 @@
+<div *ngIf="!user">
+
+    <h2>Login</h2>
+
+    <form (submit)="login()">
+
+        <mat-form-field appearance="outline">
+            <mat-label>Email: </mat-label>
+            <input matInput type="text" name="email" [(ngModel)]="credentials.email">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Password: </mat-label>
+            <input matInput type="password" name="password" [(ngModel)]="credentials.password">
+        </mat-form-field>
+        <a routerLink="/register">Register</a>
+        <button mat-stroked-button>Login</button>
+
+    </form>
+    
+</div>
+
+<div class="continue-shop" *ngIf="userCart && !isNew">
+
+    <button mat-stroked-button routerLink="/products">
+            <p> Continue your <br>
+                shopping from <br>
+                {{userCart.creationDate}}
+            </p>
+    </button>
+
+</div>
+
+
+<div class="new-shop" *ngIf="isNew && userCart">
+    <button mat-stroked-button routerLink="/products">Start a new Shop!</button>
+</div>

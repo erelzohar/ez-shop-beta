@@ -1,0 +1,11 @@
+div {
+    height: 100%;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    margin: 0;
+}
+div> * {
+    grid-column: span 2 ;
+    border : 1px solid black;
+}

@@ -1,0 +1,15 @@
+div{
+    padding:15px;
+    height: 50%;
+}
+h3,h2{
+    font-style: italic;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+h3{
+    color: yellow;
+}
+img{
+    width: 200px;
+}

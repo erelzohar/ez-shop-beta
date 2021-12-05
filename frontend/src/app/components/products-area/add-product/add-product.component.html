@@ -1,0 +1,39 @@
+<div>
+
+
+    <form #myForm="ngForm" (submit)="send()">
+
+        <mat-form-field>
+            <mat-label>Name: </mat-label>
+            <input matInput #nameBox="ngModel" type="text" [(ngModel)]="product.productName" name="productName" required
+                pattern="^[A-Z].*$">
+            <mat-error *ngIf="nameBox.errors?.required && nameBox.touched">Missing name.</mat-error>
+            <mat-error *ngIf="nameBox.errors?.pattern && nameBox.touched">Name must start with a capital letter.
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Price: </mat-label>
+            <input matInput min="1" #priceBox="ngModel" type="number" step="0.01" [(ngModel)]="product.price" name="price"
+                required>
+            <mat-error *ngIf="priceBox.invalid && priceBox.touched">Missing price.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Category: </mat-label>
+            <mat-select #categoryBox="ngModel" [(ngModel)]="product.categoryId" name="category" required>
+                <mat-option value='{{c._id}}' *ngFor="let c of categories">{{c.categoryName}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="categoryBox.invalid && categoryBox.touched">Missing category.</mat-error>
+        </mat-form-field>
+
+            <mat-label>Image: </mat-label>
+            <input type="file" accept=".jpeg , .jpg , .png" (change)="saveImage($event)" (blur)="imageBlur()" required>
+            <mat-error *ngIf="imageVisited && !product.image">Missing image.</mat-error>
+
+        <button mat-stroked-button [disabled]="myForm.form.invalid && !product.image">Add</button>
+
+    </form>
+
+
+</div>

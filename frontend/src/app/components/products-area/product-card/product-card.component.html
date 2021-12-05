@@ -1,0 +1,14 @@
+<div>
+    <img [src]="imageUrl + product.imageName" alt="">
+    
+        <h4>{{product.productName}}<br>
+            Price : {{product.price}} $
+        </h4>
+            
+    <button *ngIf="!user.isAdmin" (click)="openDialog()" mat-stroked-button>
+        Add
+    </button>
+    <button *ngIf="user.isAdmin" (click)="edit()" mat-stroked-button>
+        Edit
+    </button>
+</div>

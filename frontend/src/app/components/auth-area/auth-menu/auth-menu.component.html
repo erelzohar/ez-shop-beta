@@ -1,0 +1,9 @@
+<div>
+
+    <ng-container *ngIf="user">
+        <span>Hi {{user.firstName}} {{user.lastName}}</span>
+        <span> | </span>
+        <a routerLink="/logout" routerLinkActive="active">Logout</a>
+    </ng-container>
+
+</div>

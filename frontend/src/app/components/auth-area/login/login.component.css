@@ -1,0 +1,31 @@
+form {
+    width: 200px;
+    margin: auto;
+    text-align: left;
+}
+
+input, button, label {
+	width: 90%;
+    box-sizing: border-box;
+    font-size: large;
+}
+
+span {
+    position: absolute;
+    margin: 0 20px;
+    color: red;
+    font-size: x-large;
+}
+
+.continue-shop,.new-shop{
+    height: 100%;
+    padding: 50px;
+}
+.continue-shop button,.new-shop button{
+    background-color: rgba(34, 44, 44, 0.226);
+}
+
+p{
+    padding: 5px;
+}
+

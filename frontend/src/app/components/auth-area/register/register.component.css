@@ -1,0 +1,56 @@
+div{
+    margin-top: 50px;
+}
+
+form {
+    width: 200px;
+    margin: auto;
+    text-align: left;
+}
+
+input, button, mat-label {
+	width: 100%;
+    box-sizing: border-box;
+    font-size: larger;
+}
+
+mat-error {
+    font-size:medium;
+}
+ button{
+    background-color: rgba(44, 43, 43, 0.192);
+}
+
+.first-div{
+    animation: fadeIn 1s;
+    -webkit-animation:  fadeIn 1s;
+    -moz-animation:  fadeIn 1s;
+    -o-animation:  fadeIn 1s;
+}
+
+.second-div{
+    animation: fadeIn 1s;
+    -webkit-animation:  fadeIn 1s;
+    -moz-animation:  fadeIn 1s;
+    -o-animation:  fadeIn 1s;
+}
+
+@keyframes fadeIn{
+    0% {opacity: 0;}
+    100%{opacity: 1;}
+}
+
+@-moz-keyframes fadeIn{
+    0% {opacity: 0;}
+    100%{opacity: 1;}
+}
+
+@-o-keyframes fadeIn{
+    0% {opacity: 0;}
+    100%{opacity: 1;}
+}
+
+@-webkit-keyframes fadeIn{
+    0% {opacity: 0;}
+    100%{opacity: 1;}
+}

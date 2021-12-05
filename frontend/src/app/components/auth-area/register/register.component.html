@@ -1,0 +1,90 @@
+<div class="first-div" *ngIf="!verified">
+
+    <form #myForm="ngForm" (submit)="next()">
+
+        <mat-form-field appearance="outline">
+            <mat-label>ID: </mat-label>
+            <input matInput #customerIdBox="ngModel" type="number" [(ngModel)]="user.customerId" name="customerId"
+                required min="100000" max="10000000000">
+            <mat-error *ngIf="customerIdBox.errors?.required && customerIdBox.touched">Missing ID.</mat-error>
+            <mat-error *ngIf="customerIdBox.errors?.min && customerIdBox.touched">Minimum 6 numbers.</mat-error>
+            <mat-error *ngIf="customerIdBox.errors?.max && customerIdBox.touched">Maximum 10 numbers.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Email: </mat-label>
+            <input matInput #emailBox="ngModel" type="email" [(ngModel)]="user.email" name="email" required
+                pattern="^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$">
+            <mat-error *ngIf="emailBox.invalid && emailBox.touched">Invalid email.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Password: </mat-label>
+            <input matInput #passwordBox="ngModel" type="password" [(ngModel)]="user.password" name="password"
+                minlength="6" maxlength="200" required>
+            <mat-error *ngIf="passwordBox.errors?.minlength && passwordBox.touched">Min 6 characters.</mat-error>
+            <mat-error *ngIf="passwordBox.errors?.maxlength && passwordBox.touched">Max 200 characters.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Confirm password: </mat-label>
+            <input matInput #passConfirmBox="ngModel" type="password" [(ngModel)]="passConfirm" name="passConfirm"
+                minlength="6" maxlength="200" required>
+            <mat-error *ngIf="passConfirmBox.errors?.minlength && passConfirmBox.touched">Min 6 characters.</mat-error>
+            <mat-error *ngIf="passConfirmBox.errors?.maxlength && passConfirmBox.touched">Max 200 characters.
+            </mat-error>
+        </mat-form-field>
+
+        <button mat-stroked-button [disabled]="myForm.form.invalid">Next</button>
+
+    </form>
+
+</div>
+
+<div class="second-div" *ngIf="verified">
+
+    <form #mySecondForm="ngForm" (submit)="send()">
+
+        <mat-form-field appearance="outline">
+            <mat-label>City: </mat-label>
+            <mat-select #cityBox="ngModel" type="string" (selectionChange)="change($event)" [(ngModel)]="user.city"
+                name="city" required>
+                <mat-option value='{{c}}' *ngFor="let c of cities">{{c}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="cityBox.errors?.required && cityBox.touched">Missing city.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Street: </mat-label>
+            <input matInput #streetBox="ngModel" type="email" [(ngModel)]="user.street" name="street" required
+                minlength="2">
+            <mat-error *ngIf="streetBox.invalid && streetBox.touched">Invalid street.</mat-error>
+            <mat-error *ngIf="streetBox.errors?.minlength && streetBox.touched">Too short.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>First Name: </mat-label>
+            <input matInput #firstNameBox="ngModel" type="string" [(ngModel)]="user.firstName" name="firstName"
+                minlength="2" maxlength="30" required pattern="^[A-Z].*$">
+            <mat-error *ngIf="firstNameBox.errors?.minlength && firstNameBox.touched">Min 2 characters.</mat-error>
+            <mat-error *ngIf="firstNameBox.errors?.maxlength && firstNameBox.touched">Max 30 characters.</mat-error>
+            <mat-error style="margin-bottom: 20px;" *ngIf="firstNameBox.errors?.pattern && firstNameBox.dirty">Please start with a capital letter.
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Last Name: </mat-label>
+            <input matInput #lastNameBox="ngModel" type="string" [(ngModel)]="user.lastName" name="lastName"
+                minlength="2" maxlength="30" required pattern="^[A-Z].*$">
+            <mat-error *ngIf="lastNameBox.errors?.minlength && lastNameBox.dirty">Min 2 characters.</mat-error>
+            <mat-error *ngIf="lastNameBox.errors?.maxlength && lastNameBox.dirty">Max 30 characters.</mat-error>
+            <mat-error style="margin-bottom: 20px;" *ngIf="lastNameBox.errors?.pattern && lastNameBox.dirty">Please start with a capital letter.
+            </mat-error>
+        </mat-form-field>
+
+        <button mat-stroked-button (click)="back()">Back</button>
+        <button mat-stroked-button [disabled]="mySecondForm.form.invalid">Register</button>
+
+    </form>
+
+</div>

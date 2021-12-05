@@ -1,0 +1,26 @@
+div {
+    padding: 5px;
+    margin-top: 20px;
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.52);
+    height: 80px;
+    border-radius: 7px;
+    justify-content: space-between;
+}
+
+img {
+    width: 60px;
+    height: 60px;
+    margin: 5px;
+    border-radius: 10px;
+    border: 1px solid black;
+    vertical-align: middle;
+}
+
+button{
+    display: flex;
+    flex-direction: column;
+}
+

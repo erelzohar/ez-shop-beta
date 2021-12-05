@@ -1,0 +1,56 @@
+<button *ngIf="minimize" class="maximize" mat-stroked-button (click)="maximizeCart()">
+    <mat-icon>shopping_cart</mat-icon>
+</button>
+
+<div *ngIf="!minimize && products" [ngClass]="minimize ? 'display' : null ">
+
+    <header>
+        <button (click)="minimizeCart()" class="minimize" mat-stroked-button>
+            <mat-icon>minimize</mat-icon>
+        </button>
+       
+        <h2>Your cart</h2>
+
+        <button *ngIf= "user.isAdmin" class="minimize" (click)="add === true ? add = false : add = true" mat-stroked-button>Add product</button>
+        
+        <button *ngIf= "!user.isAdmin" (click)="resetCart()" class="minimize" mat-stroked-button>
+            <mat-icon>delete</mat-icon>
+        </button>
+    </header>
+    <app-add-product *ngIf ="add"></app-add-product>
+    <app-update-product *ngIf="user.isAdmin"></app-update-product>
+    <table *ngIf= "!user.isAdmin">
+        <thead>
+            <tr>
+                <td>Image</td>
+                <td>Product</td>
+                <td>Amount</td>
+                <td>Total price</td>
+                <td>Delete</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let c of cartItems">
+                <td>
+                    <img [src]="imageUrl + findImage(c.productId)" alt="">
+                </td>
+                <td>
+                    {{c.productName}}
+                </td>
+                <td>
+                
+                    {{c.amount}}
+                </td>
+                <td>
+                    {{c.price}} $
+                </td>
+                <td>
+                    <button mat-button (click)="deleteItem(c._id)"><mat-icon>delete</mat-icon></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <footer *ngIf= "!user.isAdmin">
+        <h2>Total : {{totalCartPrice}} $</h2> <button [disabled]="cartItems.length === 0" routerLink="/order" mat-stroked-button>Order</button>
+    </footer>
+</div>

@@ -1,0 +1,33 @@
+
+.container {
+	padding-top: 20px;
+    overflow: hidden;
+    height: 100%;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    margin: 0;
+}
+
+a {
+    color: blue;
+    font-size:large;
+}
+
+.products-list{
+    grid-column: span 2;
+    margin: 0;
+    overflow:auto ;
+}
+
+.cart{
+    grid-column: span 3;
+}
+
+.search{
+    display: flex;
+    margin-bottom: 15px;
+}
+ button{
+    background-color: rgba(255, 255, 255, 0.52);
+ }

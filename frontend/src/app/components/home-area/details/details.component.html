@@ -1,0 +1,19 @@
+<div>
+    <h2>Number of orders submitted in our store : {{orders.length}}</h2>
+    <h2>Available products : {{products.length}}</h2>
+    <img src="assets/images/loading.gif" alt="">
+</div>
+
+<div *ngIf="userCart && !user?.isAdmin">
+    <div *ngIf="user && !isNewCart">
+        <h3>You have an open cart from {{userCart.creationDate}}</h3>
+    </div>
+
+    <div *ngIf="isNewCart && !userOrder">
+        <h3>Welcome to your first shop {{user.firstName}}!</h3>
+    </div>
+
+    <div *ngIf="isNewCart && userOrder">
+        <h3>Welcome back! <br> Your last purchase was on {{userOrder.orderDate}}</h3>
+    </div>
+</div>

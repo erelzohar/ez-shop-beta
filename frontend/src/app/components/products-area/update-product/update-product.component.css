@@ -1,0 +1,25 @@
+div{
+    margin-top: 50px;
+}
+
+form {
+    width: 200px;
+    margin: auto;
+    text-align: left;
+}
+
+input, button, mat-label {
+	width: 100%;
+    box-sizing: border-box;
+    font-size: larger;
+}
+mat-form-field{
+    margin-bottom: 30px;
+}
+
+mat-error {
+    font-size:medium;
+}
+ button{
+    background-color: rgba(44, 43, 43, 0.192);
+}

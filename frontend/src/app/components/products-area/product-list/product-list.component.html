@@ -1,0 +1,18 @@
+<div class="container">
+
+    <app-please-wait *ngIf="!products"></app-please-wait>
+
+    <div id="productList" class="products-list">
+        <div class="search">
+            <input [(ngModel)]="textToSearch"  type="text" placeholder="Search product...">
+            <button (click)="search()" mat-stroked-button><mat-icon>search</mat-icon></button>
+        </div>
+        <a href="javascript:;" (click)="displayAll()">All-Products  </a>
+        <a href="javascript:;" *ngFor = "let c of categories" (click)="displayCategory(c)">{{c.categoryName}}   </a>
+        <app-product-card *ngFor="let p of products" [product]="p" ></app-product-card>
+    </div>
+
+    <app-cart id ="appCart" *ngIf="!minimize" [maximizeCart]="maximizeCart" [minimizeCart]="minimizeCart" [minimize]='minimize' class="cart"></app-cart>
+
+
+</div>
