@@ -9,6 +9,8 @@ const productsController = require("./controllers-layer/products-controller");
 const cartsController = require("./controllers-layer/carts-controller");
 const authController = require("./controllers-layer/auth-controller");
 const ordersController = require("./controllers-layer/orders-controller");
+const { application } = require("express");
+const path = require("path");
 
 const server = express();
 
@@ -35,6 +37,11 @@ server.use("/api/products",productsController);
 server.use("/api/carts",cartsController);
 server.use("/api/auth",authController);
 server.use("/api/orders",ordersController);
+
+if(process.env.NODE_ENV === "production"){
+
+    server.use(express.static(path.join(__dirname,"../frontend/dist")))
+}
 
 const port = process.env.PORT || 3001;
 server.listen(port, () => console.log("Listening..."));

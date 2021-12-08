@@ -1,4 +1,0 @@
-Admin:
-ufnik@gmail.com
-password:
-100200300

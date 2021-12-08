@@ -8,7 +8,7 @@ function connectAsync() {
             useCreateIndex: true,
             useFindAndModify: false
         };//console warnings
-        mongoose.connect(config.database.connectionString, options, (err, db) => {
+        mongoose.connect(process.env.MONGODB_URI || config.database.connectionString, options, (err, db) => {
             if (err) {
                 reject(err);
                 return;
