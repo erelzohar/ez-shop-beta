@@ -18,7 +18,7 @@ import { Unsubscribe } from 'redux';
 export class ProductListComponent implements OnInit , OnDestroy{
 
     public isAdmin: boolean = store.getState().authState.user.isAdmin;
-    public products: ProductModel[];
+    public products: ProductModel[] ;
     public minimize: boolean = false;
     public categories: CategoryModel[];
     public textToSearch: string;
@@ -32,8 +32,9 @@ export class ProductListComponent implements OnInit , OnDestroy{
 
     async ngOnInit() {
         try {
+            this.products = await this.myProductsService.getAllProducts();
             this.unsubscribe = store.subscribe(async()=>{
-                this.products = await this.myProductsService.getAllProducts();
+                this.products = store.getState().productsState.products;
             });
             this.categories = await this.myHttp.get<CategoryModel[]>(environment.productsUrl + "categories").toPromise();
         }

@@ -1,7 +1,5 @@
-<div *ngIf = "update">
-
-
-    <form #myForm="ngForm" (submit)="send()">
+<div >
+    <form *ngIf = "product" #myForm="ngForm" (submit)="send()">
         <mat-form-field>
             <mat-label>Name: </mat-label>
             <input matInput #nameBox="ngModel" type="text" [(ngModel)]="product.productName" name="productName" required

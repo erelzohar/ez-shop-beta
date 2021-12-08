@@ -15,8 +15,7 @@ import { Location } from '@angular/common';
 })
 export class UpdateProductComponent implements OnInit {
 
-    public product = new ProductModel();
-
+    public product :ProductModel;
     public categories: CategoryModel[] = [];
     public update: boolean = false;
 
@@ -29,11 +28,13 @@ export class UpdateProductComponent implements OnInit {
     ) { }
 
     async ngOnInit() {
+        // const startRouter
         this.categories = await this.http.get<CategoryModel[]>(environment.productsUrl + "categories").toPromise();
         this.myRouter.events.subscribe(async event => {
             if (event instanceof NavigationEnd && this.location.path().length > 30 && this.location.path().substring(0, 10) === "/products/") {
                 this.product = await this.myProductsService.getOneProduct(this.location.path().substring(10))
                 this.update = true;
+                console.log(event,this.update)
             }
         });
     }

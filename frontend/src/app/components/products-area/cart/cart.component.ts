@@ -61,7 +61,7 @@ export class CartComponent implements OnInit, OnDestroy {
                 this.cartItems.forEach(c => { this.totalCartPrice += c.price });
             });
         }
-        catch (err) {
+        catch (err:any) {
             this.myNotifyService.error(err.message);
         }
     }
@@ -79,7 +79,7 @@ export class CartComponent implements OnInit, OnDestroy {
             await this.myCartsService.deleteAllCartItems(this.userCart._id);
             this.myNotifyService.success("Your cart has been reset!");
         }
-        catch (err) {
+        catch (err:any) {
             this.myNotifyService.error(err.message);
         }
     }
