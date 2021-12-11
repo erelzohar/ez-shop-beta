@@ -1,6 +1,6 @@
 {
     "database": {
-        "connectionString": "mongodb://localhost:27017/EZ-Shop"
+        "connectionString": "mongodb+srv://erelzohar:erel13579@cluster0.lytkt.mongodb.net/EZ-Shop?retryWrites=true&w=majority"
     },
     "jwtKey":"EZ"
 }
