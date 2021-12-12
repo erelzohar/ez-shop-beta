@@ -20,7 +20,7 @@ async function loginAsync(credentials) {
     credentials.password = cryptoHelper.hash(credentials.password);
 
     const user = await CustomerModel.findOne({ "email": credentials.email, "password": credentials.password });
-    if(!user) throw new Error("Incorrect email or password");
+    if(!user) return null;
     // Generate new token:
     if (user) user.token = jwtHelper.getNewToken(user);
     delete user._id;

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, isDevMode} from '@angular/core';
 
 @Component({
     selector: 'app-home',
@@ -8,7 +8,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 export class HomeComponent {
 
 
-    constructor() { }
+    constructor() {
+        console.log(isDevMode())
+     }
 
-
+ 
 }

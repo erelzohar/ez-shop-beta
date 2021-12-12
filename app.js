@@ -1,3 +1,4 @@
+process.env.NODE_ENV = "production"
 global.config = require(process.env.NODE_ENV === "production" ? "./config-prod.json" : "./config-dev.json");
 const express = require("express");
 const fileUpload = require("express-fileupload");
@@ -39,11 +40,11 @@ server.use("/api/orders", ordersController);
 
 if (process.env.NODE_ENV === "production") {
 
-    server.use(express.static(path.join(__dirname, "/frontend/dist")));
-    server.use("*", (request, response) => {
-        response.sendFile(path.join(__dirname, "/frontend", "index.html"));
+    server.use(express.static(path.join(__dirname, "/frontend/dist/frontend")));
+    server.get("*", (request, response) => {
+        response.sendFile(path.join(__dirname, "frontend","dist","frontend", "index.html"));
     });
 }
 
 const port = process.env.PORT || 3001;
-server.listen(port, () => console.log("Listening..."));
+server.listen(port, () => console.log(`Listening to ${port}...`));
