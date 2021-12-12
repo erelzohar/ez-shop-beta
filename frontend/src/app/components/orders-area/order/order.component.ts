@@ -31,7 +31,7 @@ export class OrderComponent implements OnInit, OnDestroy {
         private http: HttpClient,
     ) { }
 
-  
+
     public orders: OrderModel[];
     public order = new OrderModel();
     public user: UserModel = store.getState().authState.user;
@@ -58,7 +58,7 @@ export class OrderComponent implements OnInit, OnDestroy {
             });
         }
 
-        catch (err) {
+        catch (err: any) {
             this.myNotifyService.error(err.message);
         }
     }
@@ -81,7 +81,6 @@ export class OrderComponent implements OnInit, OnDestroy {
             this.order.orderDate = new Date().getDate().toLocaleString() +
                 "/" + (new Date().getMonth() + 1).toLocaleString() +
                 "/" + new Date().getFullYear().toLocaleString().replace(',', '');
-            this.order.dateToDeliver = this.order.dateToDeliver.replace(/-/g, '/');
             if (this.orders.filter(o => o.dateToDeliver === this.order.dateToDeliver).length === 3)
                 return this.myNotifyService.error("Chosen date is unavailable.");
             this.order.cartId = this.userCart._id;
@@ -91,7 +90,7 @@ export class OrderComponent implements OnInit, OnDestroy {
             this.myNotifyService.success("Order Submited!");
             this.myRouter.navigateByUrl("/recipt");
         }
-        catch (err) {
+        catch (err: any) {
             this.myNotifyService.error(err.message);
         }
     }
