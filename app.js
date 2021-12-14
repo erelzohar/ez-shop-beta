@@ -1,4 +1,3 @@
-process.env.NODE_ENV = "production"
 global.config = require(process.env.NODE_ENV === "production" ? "./config-prod.json" : "./config-dev.json");
 const express = require("express");
 const fileUpload = require("express-fileupload");
@@ -29,7 +28,7 @@ server.use(express.json());
 // XSS attack protection:
 server.use(sanitize);
 
-server.use(cors({ origin: "*" }));
+server.use(cors());
 server.use(express.json());
 server.use(fileUpload());
 
