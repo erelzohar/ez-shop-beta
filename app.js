@@ -1,10 +1,10 @@
 global.config = require(process.env.NODE_ENV === "production" ? "./config-prod.json" : "./config-dev.json");
 const express = require("express");
+const cors = require("cors");
 const fileUpload = require("express-fileupload");
 const cookie = require("cookie-parser");
 const expressRateLimit = require("express-rate-limit");
 const sanitize = require("./middleware/sanitize");
-const cors = require("cors");
 const productsController = require("./controllers-layer/products-controller");
 const cartsController = require("./controllers-layer/carts-controller");
 const authController = require("./controllers-layer/auth-controller");
@@ -12,6 +12,7 @@ const ordersController = require("./controllers-layer/orders-controller");
 const path = require("path");
 const server = express();
 
+server.use(cors());
 
 // DOS Attack protection:
 server.use("/api", expressRateLimit({
@@ -28,8 +29,6 @@ server.use(express.json());
 // XSS attack protection:
 server.use(sanitize);
 
-server.use(cors());
-server.use(express.json());
 server.use(fileUpload());
 
 server.use("/api/products", productsController);
