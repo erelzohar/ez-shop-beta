@@ -12,6 +12,7 @@ const ordersController = require("./controllers-layer/orders-controller");
 const path = require("path");
 const server = express();
 
+server.options("*",cors());
 server.use(cors());
 
 // DOS Attack protection:
