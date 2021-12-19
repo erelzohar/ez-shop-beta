@@ -32,7 +32,7 @@ import { AuthMenuComponent } from './components/auth-area/auth-menu/auth-menu.co
 import { CartComponent } from './components/products-area/cart/cart.component';
 import { ProductDialogComponent } from './components/products-area/product-dialog/product-dialog.component';
 import { OrderComponent } from './components/orders-area/order/order.component';
-import { ReciptComponent } from './components/orders-area/recipt/recipt.component';
+import { ReciptComponent } from './components/orders-area/receipt/receipt.component';
 import { BackButtonDisableModule } from 'angular-disable-browser-back-button';
 import { AddProductComponent } from './components/products-area/add-product/add-product.component';
 

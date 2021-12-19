@@ -9,7 +9,6 @@ import store from 'src/app/redux/store';
 import { CartsService } from 'src/app/services/carts.service';
 import { NotifyService } from 'src/app/services/notify.service';
 import { ProductsService } from 'src/app/services/products.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
     selector: 'app-details',

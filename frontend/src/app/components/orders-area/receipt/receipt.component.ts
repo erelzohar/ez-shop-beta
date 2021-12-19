@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { BackButtonDisableModule } from 'angular-disable-browser-back-button';
 import { Unsubscribe } from 'redux';
 import CartItemModel from 'src/app/models/cart-item-model';
 import CartModel from 'src/app/models/cart-model';
@@ -10,11 +9,11 @@ import { CartsService } from 'src/app/services/carts.service';
 import { NotifyService } from 'src/app/services/notify.service';
 
 @Component({
-    selector: 'app-recipt',
-    templateUrl: './recipt.component.html',
-    styleUrls: ['./recipt.component.css']
+    selector: 'app-receipt',
+    templateUrl: './receipt.component.html',
+    styleUrls: ['./receipt.component.css']
 })
-export class ReciptComponent implements OnInit {
+export class ReciptComponent implements OnInit , OnDestroy {
 
     constructor(
         private myCartService: CartsService,
@@ -64,6 +63,10 @@ export class ReciptComponent implements OnInit {
         await this.myCartService.deleteCart(this.userCart._id);
         await this.myAuthService.createCart(this.user);
         this.myRouter.navigateByUrl("/home");
+    }
+
+    ngOnDestroy(): void {
+        this.unsubscribe();
     }
 
 }

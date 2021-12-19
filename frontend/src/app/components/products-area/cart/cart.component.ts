@@ -1,7 +1,4 @@
-import { Location } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Unsubscribe } from 'redux';
 import CartItemModel from 'src/app/models/cart-item-model';
 import CartModel from 'src/app/models/cart-model';

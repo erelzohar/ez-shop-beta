@@ -4,7 +4,7 @@ import { LogoutComponent } from './components/auth-area/logout/logout.component'
 import { RegisterComponent } from './components/auth-area/register/register.component';
 import { HomeComponent } from './components/home-area/home/home.component';
 import { OrderComponent } from './components/orders-area/order/order.component';
-import { ReciptComponent } from './components/orders-area/recipt/recipt.component';
+import { ReciptComponent } from './components/orders-area/receipt/receipt.component';
 import { AddProductComponent } from './components/products-area/add-product/add-product.component';
 import { ProductListComponent } from './components/products-area/product-list/product-list.component';
 import { Page404Component } from './components/shared-area/page404/page404.component';
