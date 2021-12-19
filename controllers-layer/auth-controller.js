@@ -1,3 +1,4 @@
+"use strict";
 const express = require("express");
 const authLogic = require("../business-logic-layer/auth-logic");
 const errorsHelper = require("../helpers/errors-helper");

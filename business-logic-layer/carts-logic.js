@@ -1,3 +1,4 @@
+"use strict";
 require("../data-access-layer/dal");
 const CartModel = require("../models/cart-model");
 const CartItemsModel = require("../models/cart-items-model");

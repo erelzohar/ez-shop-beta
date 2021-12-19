@@ -1,3 +1,4 @@
+"use strict";
 require("../data-access-layer/dal");
 const ProductModel = require("../models/product-model");
 const CategoryModel = require("../models/category-model");

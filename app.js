@@ -1,3 +1,4 @@
+"use strict";
 global.config = require(process.env.NODE_ENV === "production" ? "./config-prod.json" : "./config-dev.json");
 const express = require("express");
 const cors = require("cors");

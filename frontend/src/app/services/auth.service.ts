@@ -28,7 +28,8 @@ export class AuthService {
     }
 
     public async register(user: UserModel) {
-        const addedUser = await this.http.post<UserModel>(environment.registerUrl, user).toPromise();
+        const myFormData = UserModel.convertToFormData(user);
+        const addedUser = await this.http.post<UserModel>(environment.registerUrl, myFormData).toPromise();
         const addedCart = await this.createCart(addedUser);
         store.dispatch(userRegisteredAction(addedUser));
         store.dispatch(cartAddedAction(addedCart));
@@ -40,7 +41,8 @@ export class AuthService {
     }
 
     public async login(credentials: CredentialsModel) {
-        const loggedInUser = await this.http.post<UserModel>(environment.loginUrl, credentials).toPromise();
+        const myFormData = CredentialsModel.convertToFormData(credentials);
+        const loggedInUser = await this.http.post<UserModel>(environment.loginUrl, myFormData).toPromise();
         const carts = await this.http.get<CartModel[]>(environment.cartsUrl).toPromise();
         store.dispatch(userLoggedInAction(loggedInUser));
         store.dispatch(cartsDownloadedAction(carts));

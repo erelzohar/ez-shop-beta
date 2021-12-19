@@ -1,3 +1,4 @@
+"use strict";
 require("../data-access-layer/dal");
 const OrderModel = require("../models/order-model");
 

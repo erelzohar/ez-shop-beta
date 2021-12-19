@@ -1,3 +1,4 @@
+"use strict";
 const stripTags = require("striptags");
 
 function sanitize(request, response, next) {

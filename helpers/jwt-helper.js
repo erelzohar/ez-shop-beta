@@ -1,3 +1,4 @@
+"use strict";
 const jwt = require("jsonwebtoken"); 
 
 function getNewToken(payload) { // (payload will be the user object)

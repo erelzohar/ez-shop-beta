@@ -9,4 +9,16 @@ export class UserModel {
     public street: string;
     public token: string;
     public isAdmin: boolean;
+
+    public static convertToFormData(user: UserModel): FormData {
+        const myFormData = new FormData();
+        myFormData.append("customerId", user.customerId.toString());
+        myFormData.append("firstName", user.firstName);
+        myFormData.append("lastName",user.lastName);
+        myFormData.append("email",user.email);
+        myFormData.append("password",user.password);
+        myFormData.append("city",user.city);
+        myFormData.append("street",user.street);
+        return myFormData;
+    }
 }

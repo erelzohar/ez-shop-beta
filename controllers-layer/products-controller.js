@@ -1,3 +1,4 @@
+"use strict";
 const logic = require("../business-logic-layer/products-logic");
 const CategoryModel = require("../models/category-model");
 const router = require("express").Router();

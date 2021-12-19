@@ -1,3 +1,4 @@
+"use strict";
 const cryptoHelper = require("../helpers/crypto-helper");
 
 function verifyCaptcha(request, response, next) {

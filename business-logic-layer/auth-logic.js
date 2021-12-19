@@ -1,3 +1,4 @@
+"use strict";
 require("../data-access-layer/dal");
 const cryptoHelper = require("../helpers/crypto-helper");
 const jwtHelper = require("../helpers/jwt-helper");

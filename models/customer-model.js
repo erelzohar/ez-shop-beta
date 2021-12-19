@@ -1,3 +1,4 @@
+"use strict";
 const mongoose = require("mongoose");
 const mongooseUniqueValidator = require("mongoose-unique-validator");
 const { isEmail } = require("validator");
