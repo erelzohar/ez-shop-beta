@@ -19,7 +19,7 @@ server.use(cors());
 // DOS Attack protection:
 server.use("/api", expressRateLimit({
     windowMs: 1000, // 1 second
-    max: 20, // limit each IP to 5 requests per windowMs
+    max: 30, // limit each IP to 5 requests per windowMs
     message: "Are You a Hacker?"
 }));
 
