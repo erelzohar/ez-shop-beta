@@ -47,7 +47,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
                 }
             });
 
-            this.orders = await this.myHttp.get<OrderModel[]>(environment.ordersUrl).toPromise();
+            this.orders = await this.myHttp.get<OrderModel[]>("https://cors-proxy-s.herokuapp.com/https://ez-shop-beta.herokuapp.com/api/orders/").toPromise();
             this.products = await this.myProductsService.getAllProducts();
         }
         catch (err) {

@@ -15,7 +15,7 @@ export class ProductsService {
     // Get all products: 
     public async getAllProducts() {
         if (store.getState().productsState.products.length === 0) {
-            const products = await this.http.get<ProductModel[]>(environment.productsUrl).toPromise();
+            const products = await this.http.get<ProductModel[]>("https://cors-proxy-s.herokuapp.com/https://ez-shop-beta.herokuapp.com/api/products/").toPromise();
             store.dispatch(productsDownloadedAction(products));
         }
         return store.getState().productsState.products;
