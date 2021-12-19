@@ -6,7 +6,7 @@ import OrderModel from 'src/app/models/order-model';
 import ProductModel from 'src/app/models/product.model';
 import { UserModel } from 'src/app/models/user.model';
 import store from 'src/app/redux/store';
-import { CartsService } from 'src/app/services/carts-service.service';
+import { CartsService } from 'src/app/services/carts.service';
 import { NotifyService } from 'src/app/services/notify.service';
 import { ProductsService } from 'src/app/services/products.service';
 import { environment } from 'src/environments/environment';

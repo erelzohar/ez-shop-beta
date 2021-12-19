@@ -6,7 +6,7 @@ import { UserModel } from 'src/app/models/user.model';
 import store from 'src/app/redux/store';
 import { AuthService } from 'src/app/services/auth.service';
 import { NotifyService } from 'src/app/services/notify.service';
-import { CartsService } from 'src/app/services/carts-service.service';
+import { CartsService } from 'src/app/services/carts.service';
 
 @Component({
     selector: 'app-login',

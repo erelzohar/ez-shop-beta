@@ -6,7 +6,7 @@ import CartItemModel from 'src/app/models/cart-item-model';
 import { Unsubscribe } from 'redux';
 import CartModel from 'src/app/models/cart-model';
 import { environment } from 'src/environments/environment';
-import { CartsService } from 'src/app/services/carts-service.service';
+import { CartsService } from 'src/app/services/carts.service';
 import { NotifyService } from 'src/app/services/notify.service';
 import OrderModel from 'src/app/models/order-model';
 import { ProductsService } from 'src/app/services/products.service';
@@ -94,15 +94,7 @@ export class OrderComponent implements OnInit, OnDestroy {
             this.myNotifyService.error(err.message);
         }
     }
-    public onChange() {
-        // this.cartItems = this.cartItems.map(c => {
-        //     console.log(c, this.textToSearch)
-        //     c.productName = this.highlight.transform(c.productName, this.textToSearch);
-        //     console.log(c)
-        //     return c;
-        // });
-
-    }
+ 
     public fillInputs() {
         this.order.city = this.user.city;
         this.order.street = this.user.street;

@@ -3,7 +3,7 @@ import ProductModel from 'src/app/models/product.model';
 import { environment } from 'src/environments/environment';
 import { MatDialog } from "@angular/material/dialog";
 import { ProductDialogComponent } from '../product-dialog/product-dialog.component';
-import { CartsService } from 'src/app/services/carts-service.service';
+import { CartsService } from 'src/app/services/carts.service';
 import store from 'src/app/redux/store';
 import { NotifyService } from 'src/app/services/notify.service';
 import { Router } from '@angular/router';

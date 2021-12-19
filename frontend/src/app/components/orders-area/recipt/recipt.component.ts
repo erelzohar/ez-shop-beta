@@ -6,7 +6,7 @@ import CartItemModel from 'src/app/models/cart-item-model';
 import CartModel from 'src/app/models/cart-model';
 import store from 'src/app/redux/store';
 import { AuthService } from 'src/app/services/auth.service';
-import { CartsService } from 'src/app/services/carts-service.service';
+import { CartsService } from 'src/app/services/carts.service';
 import { NotifyService } from 'src/app/services/notify.service';
 
 @Component({
@@ -18,10 +18,10 @@ export class ReciptComponent implements OnInit {
 
     constructor(
         private myCartService: CartsService,
-        private myRouter:Router,
-         private myAuthService:AuthService,
-         private notify:NotifyService
-         ) { }
+        private myRouter: Router,
+        private myAuthService: AuthService,
+        private notify: NotifyService
+    ) { }
 
     public userCart: CartModel;
     public cartItems: CartItemModel[] = [];
@@ -31,12 +31,10 @@ export class ReciptComponent implements OnInit {
 
     async ngOnInit() {
         try {
-            // BackButtonDisableModule.forRoot
             this.userCart = await this.myCartService.getOneCart(this.user?._id);
             this.cartItems = await this.myCartService.getCartItems(this.userCart._id);
             this.unsubscribe = store.subscribe(async () => {
                 this.cartItems = store.getState().cartItemsState.cartItems;
-
             });
         }
         catch (err) {
@@ -45,10 +43,10 @@ export class ReciptComponent implements OnInit {
     }
 
     download() {
-        this.cartItems.forEach(c=>this.totalPrice += c.price);
+        this.cartItems.forEach(c => this.totalPrice += c.price);
         let file = new Blob([this.cartItems.map(
-            c => "Product : " + c.productName + " |  Amount : " + c.amount + " |  Price : " + c.price +"$\n").toString() + "\n\n" +"Total : " + this.totalPrice.toString() +"$"], { type: '.txt' }
-            );
+            c => "Product : " + c.productName + " |  Amount : " + c.amount + " |  Price : " + c.price + "$\n").toString() + "\n\n" + "Total : " + this.totalPrice.toString() + "$"], { type: '.txt' }
+        );
         let a = document.createElement("a"),
             url = URL.createObjectURL(file);
         a.href = url;
@@ -60,7 +58,8 @@ export class ReciptComponent implements OnInit {
             window.URL.revokeObjectURL(url);
         }, 0);
     }
-    public async redirect(){
+
+    public async redirect() {
         await this.myCartService.deleteAllCartItems(this.userCart._id);
         await this.myCartService.deleteCart(this.userCart._id);
         await this.myAuthService.createCart(this.user);
