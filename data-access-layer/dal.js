@@ -8,7 +8,7 @@ function connectAsync() {
             useUnifiedTopology: true,
             useCreateIndex: true,
             useFindAndModify: false
-        };//console warnings
+        };
         mongoose.connect(config.database.connectionString, options, (err, db) => {
             if (err) {
                 reject(err);

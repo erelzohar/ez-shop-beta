@@ -6,6 +6,5 @@ div {
     margin: 0;
 }
 div> * {
-    grid-column: span 2 ;
-    border : 1px solid black;
+    grid-column: span 3 ;
 }

@@ -26,7 +26,6 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatButtonModule } from "@angular/material/button";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatIconModule } from "@angular/material/icon";
-import { AboutComponent } from './components/home-area/about/about.component';
 import { DetailsComponent } from './components/home-area/details/details.component';
 import { AuthMenuComponent } from './components/auth-area/auth-menu/auth-menu.component';
 import { CartComponent } from './components/products-area/cart/cart.component';
@@ -51,7 +50,6 @@ import { AddProductComponent } from './components/products-area/add-product/add-
         PleaseWaitComponent,
         ProductListComponent,
         ProductCardComponent,
-        AboutComponent,
         DetailsComponent,
         AuthMenuComponent,
         CartComponent,
