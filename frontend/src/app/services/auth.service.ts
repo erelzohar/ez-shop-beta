@@ -14,10 +14,14 @@ import { NotifyService } from './notify.service';
 })
 export class AuthService {
 
-    constructor(private http: HttpClient, private notyf: NotifyService) { }
+    constructor(
+        private http: HttpClient,
+        private notyf: NotifyService,
+        private env: environment
+    ) {}
 
     public async createCart(user: UserModel) {
-        const addedCart = this.http.post<CartModel>(environment.cartsUrl, {
+        const addedCart = this.http.post<CartModel>(this.env.urls.cartsUrl, {
             "customerId": user._id,
             "creationDate": new Date().getDate().toLocaleString() +
                 "/" + (new Date().getMonth() + 1).toLocaleString() +
@@ -29,7 +33,7 @@ export class AuthService {
 
     public async register(user: UserModel) {
         const myFormData = UserModel.convertToFormData(user);
-        const addedUser = await this.http.post<UserModel>(environment.registerUrl, myFormData).toPromise();
+        const addedUser = await this.http.post<UserModel>(this.env.urls.registerUrl, myFormData).toPromise();
         const addedCart = await this.createCart(addedUser);
         store.dispatch(userRegisteredAction(addedUser));
         store.dispatch(cartAddedAction(addedCart));
@@ -42,8 +46,8 @@ export class AuthService {
 
     public async login(credentials: CredentialsModel) {
         const myFormData = CredentialsModel.convertToFormData(credentials);
-        const loggedInUser = await this.http.post<UserModel>(environment.loginUrl, myFormData).toPromise();
-        const carts = await this.http.get<CartModel[]>(environment.cartsUrl).toPromise();
+        const loggedInUser = await this.http.post<UserModel>(this.env.urls.loginUrl, myFormData).toPromise();
+        const carts = await this.http.get<CartModel[]>(this.env.urls.cartsUrl).toPromise();
         store.dispatch(userLoggedInAction(loggedInUser));
         store.dispatch(cartsDownloadedAction(carts));
         setTimeout(() => {

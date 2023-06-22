@@ -1,4 +1,4 @@
-export const environment = {
+export const prodEnvironment = {
     production: true,
 
     loginUrl: "https://ez-shop-beta.herokuapp.com/api/auth/login",

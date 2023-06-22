@@ -21,11 +21,12 @@ export class AddProductComponent implements OnInit {
     constructor(
         private myProductsService: ProductsService,
         private notify: NotifyService,
-        private http: HttpClient
+        private http: HttpClient,
+        private env:environment
     ) { }
 
     async ngOnInit() {
-        this.categories = await this.http.get<CategoryModel[]>(environment.productsUrl + "categories").toPromise();
+        this.categories = await this.http.get<CategoryModel[]>(this.env.urls.productsUrl + "categories").toPromise();
     }
 
     public saveImage(args: Event): void {

@@ -34,6 +34,7 @@ import { OrderComponent } from './components/orders-area/order/order.component';
 import { ReciptComponent } from './components/orders-area/receipt/receipt.component';
 import { BackButtonDisableModule } from 'angular-disable-browser-back-button';
 import { AddProductComponent } from './components/products-area/add-product/add-product.component';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -81,7 +82,9 @@ import { AddProductComponent } from './components/products-area/add-product/add-
         }),
         HttpClientJsonpModule
     ],
-    providers: [{
+    providers: [
+        environment,
+        {
         provide: HTTP_INTERCEPTORS, 
         useClass: JwtInterceptor, 
         multi: true

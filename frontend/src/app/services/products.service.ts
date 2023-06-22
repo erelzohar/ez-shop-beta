@@ -10,12 +10,12 @@ import ProductModel from '../models/product.model';
 })
 export class ProductsService {
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient,private env:environment) { }
 
     // Get all products: 
     public async getAllProducts() {
         if (store.getState().productsState.products.length === 0) {
-            const products = await this.http.get<ProductModel[]>("https://cors-proxy-s.herokuapp.com/https://ez-shop-beta.herokuapp.com/api/products/").toPromise();
+            const products = await this.http.get<ProductModel[]>(this.env.urls.productsUrl).toPromise();
             store.dispatch(productsDownloadedAction(products));
         }
         return store.getState().productsState.products;
@@ -24,7 +24,7 @@ export class ProductsService {
     // Get one product: 
     public async getOneProduct(_id: string) {
         if (store.getState().productsState.products.length === 0) {
-            const products = await this.http.get<ProductModel[]>(environment.productsUrl).toPromise();
+            const products = await this.http.get<ProductModel[]>(this.env.urls.productsUrl).toPromise();
             store.dispatch(productsDownloadedAction(products));
         }
         const product = store.getState().productsState.products.find(p => p._id === _id);
@@ -34,7 +34,7 @@ export class ProductsService {
     // Add product: 
     public async addProduct(product: ProductModel) {
         const myFormData: FormData = ProductModel.convertToFormData(product);
-        const addedProduct = await this.http.post<ProductModel>(environment.productsUrl, myFormData).toPromise();
+        const addedProduct = await this.http.post<ProductModel>(this.env.urls.productsUrl, myFormData).toPromise();
         store.dispatch(productAddedAction(addedProduct));
         return addedProduct;
     }
@@ -42,14 +42,14 @@ export class ProductsService {
     // Update product: 
     public async updateProduct(product: ProductModel) {
         const myFormData: FormData = ProductModel.convertToFormData(product);
-        const updatedProduct = await this.http.put<ProductModel>(environment.productsUrl + product._id , myFormData).toPromise();
+        const updatedProduct = await this.http.put<ProductModel>(this.env.urls.productsUrl + product._id , myFormData).toPromise();
         store.dispatch(productUpdatedAction(updatedProduct));
         return updatedProduct;
     }
 
     // Delete product: 
     public async deleteProduct(_id: string) {
-        await this.http.delete(environment.productsUrl + _id).toPromise();
+        await this.http.delete(this.env.urls.productsUrl + _id).toPromise();
         store.dispatch(productDeletedAction(_id));
     }
 

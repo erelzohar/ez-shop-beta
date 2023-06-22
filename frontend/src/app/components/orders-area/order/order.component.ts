@@ -29,6 +29,7 @@ export class OrderComponent implements OnInit, OnDestroy {
         private myNotifyService: NotifyService,
         private myRouter: Router,
         private http: HttpClient,
+        private env:environment
     ) { }
 
 
@@ -40,13 +41,13 @@ export class OrderComponent implements OnInit, OnDestroy {
     public cartItems: CartItemModel[];
     public unsubscribe: Unsubscribe;
     public totalCartPrice: number = 0;
-    public imageUrl = environment.productImagesUrl;
+    public imageUrl = this.env.urls.productImagesUrl;
     public textToSearch: string;
 
 
     async ngOnInit() {
         try {
-            this.orders = await this.http.get<OrderModel[]>(environment.ordersUrl).toPromise();
+            this.orders = await this.http.get<OrderModel[]>(this.env.urls.ordersUrl).toPromise();
             this.products = await this.myProductService.getAllProducts();
             this.userCart = await this.myCartsService.getOneCart(this.user._id);
             this.cartItems = await this.myCartsService.getCartItems(this.userCart._id);

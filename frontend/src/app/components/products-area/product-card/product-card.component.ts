@@ -18,7 +18,8 @@ export class ProductCardComponent {
         private dialog: MatDialog,
         private myCartService: CartsService,
         private notify: NotifyService,
-        private myRouter:Router
+        private myRouter:Router,
+        private env:environment
     ) { }
 
     @Input()
@@ -26,7 +27,7 @@ export class ProductCardComponent {
 
     public user = store.getState().authState.user;
     public userCartId: string;
-    public imageUrl = environment.productImagesUrl;
+    public imageUrl = this.env.urls.productImagesUrl;
 
 
     public openDialog() {

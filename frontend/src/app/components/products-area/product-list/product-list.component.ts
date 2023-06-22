@@ -28,6 +28,7 @@ export class ProductListComponent implements OnInit , OnDestroy{
         private myProductsService: ProductsService,
         private notify: NotifyService,
         private myHttp: HttpClient,
+        private env:environment
     ) { }
 
     async ngOnInit() {
@@ -36,7 +37,7 @@ export class ProductListComponent implements OnInit , OnDestroy{
             this.unsubscribe = store.subscribe(async()=>{
                 this.products = store.getState().productsState.products;
             });
-            this.categories = await this.myHttp.get<CategoryModel[]>(environment.productsUrl + "categories").toPromise();
+            this.categories = await this.myHttp.get<CategoryModel[]>(this.env.urls.productsUrl + "categories").toPromise();
         }
         catch (err) {
             this.notify.error(err);

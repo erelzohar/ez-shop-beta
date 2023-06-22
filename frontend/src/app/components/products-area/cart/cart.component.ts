@@ -22,7 +22,8 @@ export class CartComponent implements OnInit, OnDestroy {
         private myNotifyService: NotifyService,
         private myCartsService: CartsService,
         private myProductService: ProductsService,
-        private myAuthService: AuthService
+        private myAuthService: AuthService,
+        private env:environment
     ) { }
 
     public user: UserModel = store.getState().authState?.user;
@@ -31,7 +32,7 @@ export class CartComponent implements OnInit, OnDestroy {
     public cartItems: CartItemModel[] = [];
     public unsubscribe: Unsubscribe;
     public totalCartPrice: number = 0;
-    public imageUrl = environment.productImagesUrl;
+    public imageUrl = this.env.urls.productImagesUrl;
     public add :boolean = false;
 
     @Input()

@@ -9,6 +9,7 @@ import store from 'src/app/redux/store';
 import { CartsService } from 'src/app/services/carts.service';
 import { NotifyService } from 'src/app/services/notify.service';
 import { ProductsService } from 'src/app/services/products.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
     selector: 'app-details',
@@ -21,7 +22,8 @@ export class DetailsComponent implements OnInit, OnDestroy {
         private myNotify: NotifyService,
         private myHttp: HttpClient,
         private myProductsService: ProductsService,
-        private myCartsService: CartsService
+        private myCartsService: CartsService,
+        private env:environment
     ) { }
 
 
@@ -46,7 +48,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
                 }
             });
 
-            this.orders = await this.myHttp.get<OrderModel[]>("https://cors-proxy-s.herokuapp.com/https://ez-shop-beta.herokuapp.com/api/orders/").toPromise();
+            this.orders = await this.myHttp.get<OrderModel[]>(this.env.urls.ordersUrl).toPromise();
             this.products = await this.myProductsService.getAllProducts();
         }
         catch (err) {

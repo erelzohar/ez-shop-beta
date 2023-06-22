@@ -24,12 +24,13 @@ export class UpdateProductComponent implements OnInit {
         private myRouter: Router,
         private notify: NotifyService,
         private http: HttpClient,
-        private location: Location
+        private location: Location,
+        private env:environment
     ) { }
 
     async ngOnInit() {
         // const startRouter
-        this.categories = await this.http.get<CategoryModel[]>(environment.productsUrl + "categories").toPromise();
+        this.categories = await this.http.get<CategoryModel[]>(this.env.urls.productsUrl + "categories").toPromise();
         this.myRouter.events.subscribe(async event => {
             if (event instanceof NavigationEnd && this.location.path().length > 30 && this.location.path().substring(0, 10) === "/products/") {
                 this.product = await this.myProductsService.getOneProduct(this.location.path().substring(10))

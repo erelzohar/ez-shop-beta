@@ -13,12 +13,12 @@ import OrderModel from '../models/order-model';
 })
 export class CartsService {
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient,private env :environment) { }
 
     // Get all carts: 
     public async getAllCarts() {
         if (store.getState().cartsState.carts.length === 0) {
-            const carts = await this.http.get<CartModel[]>("https://cors-proxy-s.herokuapp.com/https://ez-shop-beta.herokuapp.com/api/carts/").toPromise();
+            const carts = await this.http.get<CartModel[]>(this.env.urls.cartsUrl).toPromise();
             store.dispatch(cartsDownloadedAction(carts));
         }
         return store.getState().cartsState.carts;
@@ -27,7 +27,7 @@ export class CartsService {
     // Get all cart items: 
     public async getCartItems(cartId: string) {
         if (store.getState().cartItemsState.cartItems.length === 0 && cartId) {
-            const cartItems = await this.http.get<CartItemModel[]>(environment.cartItemsUrl + cartId).toPromise();
+            const cartItems = await this.http.get<CartItemModel[]>(this.env.urls.cartItemsUrl + cartId).toPromise();
             store.dispatch(cartItemsDownloadedAction(cartItems));
         }
         return store.getState().cartItemsState.cartItems;
@@ -45,7 +45,7 @@ export class CartsService {
 
     // Add cart: 
     public async addCart(cart: CartModel) {
-        const addedCart = await this.http.post<CartModel>(environment.cartsUrl, cart).toPromise();
+        const addedCart = await this.http.post<CartModel>(this.env.urls.cartsUrl, cart).toPromise();
         store.dispatch(cartAddedAction(addedCart));
         return addedCart;
     }
@@ -53,32 +53,32 @@ export class CartsService {
     // Add cart item: 
     public async addCartItem(cartItem: any) {
         const myFormData: FormData = CartItemModel.convertToFormData(cartItem);
-        const addedCartItem = await this.http.post<CartItemModel>(environment.cartItemsUrl, myFormData).toPromise();
+        const addedCartItem = await this.http.post<CartItemModel>(this.env.urls.cartItemsUrl, myFormData).toPromise();
         store.dispatch(cartItemAddedAction(addedCartItem));
         return addedCartItem;
     }
 
     // Delete cart: 
     public async deleteCart(_id: string) {
-        await this.http.delete(environment.cartsUrl + _id).toPromise();
+        await this.http.delete(this.env.urls.cartsUrl + _id).toPromise();
         store.dispatch(cartDeletedAction(_id));
     }
 
     // Delete cart item: 
     public async deleteCartItem(_id: string) {
-        await this.http.delete(environment.cartItemsUrl + _id).toPromise();
+        await this.http.delete(this.env.urls.cartItemsUrl + _id).toPromise();
         store.dispatch(cartItemDeletedAction(_id));
     }
 
     // Delete all cart item: 
     public async deleteAllCartItems(cartId: string) {
-        await this.http.delete(environment.cartItemsUrl + "delete/" + cartId).toPromise();
+        await this.http.delete(this.env.urls.cartItemsUrl + "delete/" + cartId).toPromise();
         store.dispatch(allCartItemsDeletedAction(cartId));
     }
 
     public async postOrder(order: OrderModel) {
         const formData: FormData = OrderModel.convertToFormData(order);
-        return await this.http.post<OrderModel>(environment.ordersUrl, formData).toPromise();
+        return await this.http.post<OrderModel>(this.env.urls.ordersUrl, formData).toPromise();
     }
 
 }
